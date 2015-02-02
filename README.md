@@ -12,7 +12,7 @@ A celja, hogy peldaul az irodaban egy monitorra ki lehet rakni.
 
 ## Futtatas
 
-1. node index.js
+1. node app.js
 
 Bongeszoben: http://localhost:3000/
 
