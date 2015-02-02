@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Kövibusz</title>
+        <meta charset="utf-8"/>
+        <meta author="Mefi <mefi@mefi.be>"/>
+        <link rel="stylesheet" href="/css/style.css" />
+        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script>
+            var setColorOrReload = function () {
+                var now = new Date().getTime() / 1000,
+                    timestamp = $("#timestamp").data("timestamp") / 1000,
+                    diff = (timestamp - now);
+
+                console.log(diff);
+
+                if (0 > diff) {
+                    window.location.reload();
+                }
+
+                if (120 >= diff) {
+                    $("#time").addClass("red").removeClass("green");
+                }
+            };
+            $(function () {
+                setInterval(setColorOrReload, 1000);
+            });
+        </script>
+    </head>
+    <body>
+    <div id="container">
+        <div id="bus">
+            <p>{{ route }}</p>
+        </div>
+        <div id="time" class="green">
+            <p id="timestamp" data-timestamp="{{ timestamp }}">{{ time }}</p>
+        </div>
+    </div>
+    </body>
+</html>

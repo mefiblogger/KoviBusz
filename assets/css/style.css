@@ -1,0 +1,52 @@
+body {
+    background-color: #282828;
+    color: #fff;
+    font-family: "Helvetica Neue", "Arial", "sans-serif";
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    margin: 20% auto;
+    width: 700px;
+}
+
+#bus {
+    border-radius: 30px;
+    height: 200px;
+    width: 340px;
+    background: #0090be url("/images/bus.png") no-repeat 10px 10px;
+}
+
+#bus p {
+    float: left;
+    font-size: 85px;
+    font-weight: bold;
+    margin: 50px 0 0 135px;
+    text-align: center;
+    width: 200px;
+}
+
+#time {
+    border-radius: 30px;
+    float: left;
+    height: 200px;
+    margin: -200px 370px;
+    width: 340px;
+}
+
+#time p {
+    font-size: 85px;
+    font-weight: bold;
+    margin: 50px 0;
+    text-align: center;
+    width: 100%;
+}
+
+#time.green {
+    background-color: #6e9753;
+}
+
+#time.red {
+    background-color: #b34640;
+}
