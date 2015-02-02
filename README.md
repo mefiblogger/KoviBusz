@@ -4,6 +4,8 @@ A Kovibusz egy adott busz kovetkezo indulasi idejet mutatja.
 
 Nagyon kezdetleges, jelenleg a 178-as busz Zsolt utca -> Keleti Palyaudvar menetrendjet mutatja.
 
+A celja, hogy peldaul az irodaban egy monitorra ki lehet rakni.
+
 ## Telepites
 
 1. npm install
@@ -13,3 +15,7 @@ Nagyon kezdetleges, jelenleg a 178-as busz Zsolt utca -> Keleti Palyaudvar menet
 1. node index.js
 
 Bongeszoben: http://localhost:3000/
+
+## Jarat modositasa
+
+A FutarRequest.js fajlban az URL-ben lathato, hogyan kerdezi ki az adatokat, ezt kell modositani masik jarathoz.
