@@ -11,8 +11,6 @@
                     timestamp = $("#timestamp").data("timestamp") / 1000,
                     diff = (timestamp - now);
 
-                console.log(diff);
-
                 if (0 > diff) {
                     window.location.reload();
                 }
