@@ -39,7 +39,7 @@ module.exports = function () {
         // Adatok lekerese a Futartol.
         request(requestOptions, function (error, response, data) {
             if (200 != response.statusCode) {
-                console.error("Hibas valasz erkezett a BKK Futartol: 405 Not Allowed");
+                console.error("Hibas valasz erkezett a BKK Futartol:\n");
                 console.error(response.body);
                 return;
             }
