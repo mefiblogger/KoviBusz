@@ -8,14 +8,18 @@ A celja, hogy peldaul az irodaban egy monitorra ki lehet rakni.
 
 ## Telepites
 
-1. npm install
+```npm install```
 
 ## Futtatas
 
-1. node app.js
+```node app.js```
 
 Bongeszoben: http://localhost:3000/
 
 ## Jarat modositasa
 
 A FutarRequest.js fajlban az URL-ben lathato, hogyan kerdezi ki az adatokat, ezt kell modositani masik jarathoz.
+
+## Ecetera
+
+A licensz MIT, a keszito [Mefi](http://mefi.be/), vidd es hasznald egeszseggel!
