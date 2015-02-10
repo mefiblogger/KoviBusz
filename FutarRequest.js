@@ -33,7 +33,7 @@ module.exports = function () {
                 return;
             }
 
-            var timestamp = data.data.entry.stopTimes[0].arrivalTime * 1000,
+            var timestamp = data.data.entry.stopTimes[0].predictedArrivalTime * 1000,
                 date = new Date(timestamp),
                 m = "0" + date.getMinutes(),
                 time = date.getHours() + ':' + m.substr(m.length-2),
