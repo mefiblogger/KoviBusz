@@ -7,6 +7,8 @@ var express = require("express"),
     FutarRequest = require("./FutarRequest");
 
 app.get('/', function (req, res) {
+    res.header("X-Frame-Options", "ALLOWALL");
+
     var request = new FutarRequest();
 
     request.getResponse(function (response) {
