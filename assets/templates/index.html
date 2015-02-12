@@ -6,21 +6,38 @@
         <link rel="stylesheet" href="/css/style.css" />
         <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
         <script>
-            var setColorOrReload = function () {
-                var now = new Date().getTime() / 1000,
-                    timestamp = $("#timestamp").data("timestamp") / 1000,
-                    diff = (timestamp - now);
+            var setColorAndTextOrReload = function () {
+                var now = Math.round(new Date().getTime() / 1000),
+                    timestamp = Math.round($("#timestamp").data("timestamp") / 1000),
+                    diff = (timestamp - now),
+                    text,
+                    time;
 
                 if (0 > diff) {
                     window.location.reload();
+                    return;
                 }
 
                 if (120 >= diff) {
                     $("#time").addClass("red").removeClass("green");
                 }
+
+                if (now % 10 === 0) {
+                    text = "";
+                    time = $("#timestamp").data("time");
+                }
+                else if (60 < diff) {
+                    text = " perc";
+                    time = Math.round(diff/60);
+                } else {
+                    text = " mp";
+                    time = Math.round(diff);
+                }
+
+                $("#timestamp").text(time + " " + text);
             };
             $(function () {
-                setInterval(setColorOrReload, 1000);
+                setInterval(setColorAndTextOrReload, 1000);
             });
         </script>
     </head>
@@ -30,7 +47,7 @@
             <p>{{ route }}</p>
         </div>
         <div id="time" class="green">
-            <p id="timestamp" data-timestamp="{{ timestamp }}">{{ time }}</p>
+            <p id="timestamp" data-timestamp="{{ timestamp }}" data-time="{{ time }}">{{ time }}</p>
         </div>
     </div>
     </body>
