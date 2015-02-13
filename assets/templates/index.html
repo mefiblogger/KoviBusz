@@ -15,6 +15,7 @@
 
                 if (0 > diff) {
                     window.location.reload();
+                    clearInterval(intervalId);
                     return;
                 }
 
@@ -37,7 +38,7 @@
                 $("#timestamp").text(time + " " + text);
             };
             $(function () {
-                setInterval(setColorAndTextOrReload, 1000);
+                var intervalId = setInterval(setColorAndTextOrReload, 1000);
             });
         </script>
     </head>
