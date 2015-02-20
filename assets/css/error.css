@@ -1,0 +1,26 @@
+body {
+    background-color: #282828;
+    color: #8a8d8e;
+    font-family: "Helvetica Neue", "Arial", "sans-serif";
+    font-weight: 200;
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    margin: 20% auto;
+    width: 850px;
+}
+
+a, a:hover {
+    color: #8a8d8e;
+    text-decoration: underline;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+#message p {
+
+}

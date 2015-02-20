@@ -1,14 +1,14 @@
-# Kovibusz
+# KoviBusz 2.0.0
 
-A Kovibusz egy adott busz kovetkezo indulasi idejet mutatja.
+A KoviBusz egy adott busz kovetkezo indulasi idejet mutatja.
 
-Nagyon kezdetleges, jelenleg a 178-as busz Zsolt utca -> Keleti Palyaudvar menetrendjet mutatja.
+A celja, hogy peldaul irodakban, kozossegi helyeken egy monitoron meg lehet jeleniteni, hasonloan mint a Futar megalloiban lathato kijelzoket.
 
-A celja, hogy peldaul az irodaban egy monitoron meg lehet jeleniteni, hasonloan mint a Futar megalloiban lathato kijelzoket.
+Minden menetrend adatot a BKK Futar API biztosit. Amennyiben elerheto, ugy a GPS szerinti erkezest mutatja, egyebkent a menetrend szerintit.
 
-A menetrend adatokat a BKK Futar API segitsegevel kerdezi le.
+Habar a projekt neve KoviBusz, tamogatja az osszes BKK jarmuvet, igy a kisfoldalattit, metrot, HEV-et, villamost es trolibuszt is.
 
-Jelenleg buszhoz van ikon, de az API tud kezelni metrot, villamost stb.
+Nezd meg [Herokun](https://secret-journey-9548.herokuapp.com) vagy a [kovibusz.mefi.be](http://kovibusz.mefi.be) ] URL-en.
 
 ## Telepites
 

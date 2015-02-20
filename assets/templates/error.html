@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta author="Mefi <mefi@mefi.be>"/>
+        <title>KöviBusz - Mefi-féle BKK gyorsmenetrend</title>
+        <link rel="stylesheet" href="/css/error.css" />
+        <link rel="shortcut icon" href="/images/favicon.png" type="image/gif" title="favicon rulezz" />
+        <script>
+            var intervalId = setInterval(function () {
+                window.location.reload();
+            }, 1000 * 60 * 5);
+        </script>
+    </head>
+    <body>
+        <div id="container">
+            <div id="message">
+                <h1>Nincs elérhető menetrendinformáció</h1>
+                <p>Az oldal ötpercenként frissül, de <a href="/">másik megállót</a> is választhatsz.</p>
+            </div>
+        </div>
+    </body>
+</html>

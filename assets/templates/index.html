@@ -1,55 +1,39 @@
+<!DOCTYPE html>
 <html>
     <head>
-        <title>Kövibusz</title>
         <meta charset="utf-8"/>
         <meta author="Mefi <mefi@mefi.be>"/>
-        <link rel="stylesheet" href="/css/style.css" />
+        <title>KöviBusz - Mefi-féle BKK gyorsmenetrend</title>
+
+        <link href="//api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css" rel="stylesheet" />
+        <link href="/css/index.css" rel="stylesheet" />
+        <link rel="shortcut icon" href="/images/favicon.png" type="image/gif" title="favicon rulezz" />
         <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script src="//api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js"></script>
+        <script src="/js/BKKStopMap.js"></script>
         <script>
-            var setColorAndTextOrReload = function () {
-                var now = Math.round(new Date().getTime() / 1000),
-                    timestamp = Math.round($("#timestamp").data("timestamp") / 1000),
-                    diff = (timestamp - now),
-                    text,
-                    time;
+            $(function() {
+                var map = new BKKStopMap();
 
-                if (0 > diff) {
-                    window.location.reload();
-                    clearInterval(intervalId);
-                    return;
+                // ha nincs elhelyezkedes, a Korondre (<3) megy a terkep
+                if (!navigator.geolocation) {
+                    map.init(19.07000, 47.50971);
                 }
 
-                if (120 >= diff) {
-                    $("#time").addClass("red").removeClass("green");
-                }
-
-                if (now % 10 === 0) {
-                    text = "";
-                    time = $("#timestamp").data("time");
-                }
-                else if (60 < diff) {
-                    text = " perc";
-                    time = Math.round(diff/60);
-                } else {
-                    text = " mp";
-                    time = Math.round(diff);
-                }
-
-                $("#timestamp").text(time + " " + text);
-            };
-            $(function () {
-                var intervalId = setInterval(setColorAndTextOrReload, 1000);
+                // ha van, akkor oda
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    map.init(position.coords.longitude, position.coords.latitude);
+                });
             });
         </script>
     </head>
     <body>
-    <div id="container">
-        <div id="bus">
-            <p>{{ route }}</p>
+        <div id="container">
+            <header>
+                <h1>Válassz egy megállót!</h1>
+                <a id="mefiblog" href="http://mefi.be/"></a>
+            </header>
+            <div id="map" class="map"></div>
         </div>
-        <div id="time" class="green">
-            <p id="timestamp" data-timestamp="{{ timestamp }}" data-time="{{ time }}">{{ time }}</p>
-        </div>
-    </div>
     </body>
 </html>

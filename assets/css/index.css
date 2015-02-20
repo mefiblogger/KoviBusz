@@ -1,0 +1,51 @@
+body, html {
+    background-color: #fff;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+    background: #fff url("/images/load.gif") repeat center;
+    bottom:0;
+    position: absolute;
+    top:0;
+    width:100%;
+}
+
+a, a.stop-link, a.stop-link:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+header {
+    background-color: #fff;
+    color: #000;
+    display: block;
+    height: 75px;
+    opacity: 0.8;
+    pointer-events: none;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    z-index: 999 !important;
+}
+
+h1 {
+    font-family: "Helvetica Neue", "Arial", sans-serif;
+    font-size: 3em;
+    font-weight: 100;
+    margin: 8px 0 0 0;
+}
+
+#mefiblog {
+    background: transparent url("/images/mefiblog_logo.png") no-repeat center;
+    display: block;
+    float: right;
+    height: 75px;
+    width: 75px;
+}
+
+#mefiblog:hover {
+    opacity: 1;
+}

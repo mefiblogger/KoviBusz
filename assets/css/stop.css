@@ -11,14 +11,26 @@ body {
     width: 700px;
 }
 
-#bus {
+#route {
     border-radius: 30px;
     height: 200px;
     width: 340px;
-    background: #0090be url("/images/bus.png") no-repeat 10px 10px;
+    background: #0076a9 url("/images/bus.png") no-repeat 10px 10px;
 }
 
-#bus p {
+#route.subway {
+    background: #779e91 url("/images/subway.png") no-repeat 10px 10px;
+}
+
+#route.tram {
+    background: #ba9d17 url("/images/tram.png") no-repeat 10px 10px;
+}
+
+#route.trolleybus {
+    background: #873a35 url("/images/trolleybus.png") no-repeat 10px 10px;
+}
+
+#route p {
     float: left;
     font-size: 85px;
     font-weight: bold;
