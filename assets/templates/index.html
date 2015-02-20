@@ -13,16 +13,20 @@
         <script src="/js/BKKStopMap.js"></script>
         <script>
             $(function() {
-                var map = new BKKStopMap();
+                var map = new BKKStopMap(),
+                    lon = 19.07000,
+                    lat = 47.50971;
 
                 // ha nincs elhelyezkedes, a Korondre (<3) megy a terkep
                 if (!navigator.geolocation) {
-                    map.init(19.07000, 47.50971);
+                    map.init(lon, lat);
                 }
 
                 // ha van, akkor oda
                 navigator.geolocation.getCurrentPosition(function (position) {
                     map.init(position.coords.longitude, position.coords.latitude);
+                }, function (error) {
+                    map.init(lon, lat);
                 });
             });
         </script>
@@ -30,7 +34,7 @@
     <body>
         <div id="container">
             <header>
-                <h1>Válassz egy megállót!</h1>
+                <h1 id="title">Hol vagy?</h1>
                 <a id="mefiblog" href="http://mefi.be/"></a>
             </header>
             <div id="map" class="map"></div>

@@ -78,6 +78,8 @@ var BKKStopMap = function () {
                 bounds._northEast.lat  // maxLat
             ];
 
+        $("#title").text("Megállók betöltése…");
+
         $.ajax({
             dataType: "json",
             url: "/stops/" + data.join(","),
@@ -105,6 +107,8 @@ var BKKStopMap = function () {
         }
 
         that.map.addLayer(that.markers);
+
+        $("#title").text("Válassz megállót!");
     };
 
     /**
