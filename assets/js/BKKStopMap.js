@@ -52,7 +52,7 @@ var BKKStopMap = function () {
 
         L.tileLayer('http://{s}.tiles.mapbox.com/v4/mefiblogger.l8obi34e/{z}/{x}/{y}.png?access_token={token}', {
             token: L.mapbox.accessToken,
-            attribution: '<a href="http://osm.org/">OpenStreetMap</a> | <a href="http://mapbox.com/">MapBox</a>'
+            attribution: '<a href="http://osm.org/">OpenStreetMap</a> | <a href="http://mapbox.com/">MapBox</a> | <a href="http://futar.bkk.hu/">BKK Futár</a>'
         }).addTo(that.map);
 
         that.subscribeEventListeners();
