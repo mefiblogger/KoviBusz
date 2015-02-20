@@ -8,7 +8,7 @@ Minden menetrend adatot a BKK Futar API biztosit. Amennyiben elerheto, ugy a GPS
 
 Habar a projekt neve KoviBusz, tamogatja az osszes BKK jarmuvet, igy a kisfoldalattit, metrot, HEV-et, villamost es trolibuszt is.
 
-Nezd meg [Herokun](https://secret-journey-9548.herokuapp.com) vagy a kovibusz.mefi.be URL-en.
+Nezd meg [Herokun](https://secret-journey-9548.herokuapp.com) vagy a [kovibusz.mefi.be](http://kovibusz.mefi.be) URL-en.
 
 ## Telepites
 
