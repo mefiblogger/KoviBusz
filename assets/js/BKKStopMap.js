@@ -42,8 +42,8 @@ var BKKStopMap = function () {
     /**
      * Beallitja es betolti a terkepet.
      *
-     * @param {float} lon
-     * @param {float} lat
+     * @param {Number} lon
+     * @param {Number} lat
      */
     this.init = function (lon, lat) {
         L.mapbox.accessToken = "pk.eyJ1IjoibWVmaWJsb2dnZXIiLCJhIjoiall0a1FFQSJ9.jZrldQE2zWdAhNgVxb6e5A";
@@ -62,6 +62,15 @@ var BKKStopMap = function () {
     };
 
     /**
+     * Beallitja az oldal cimsorat.
+     *
+     * @param {String}  title
+     */
+    this.setTitle = function (title) {
+        $("#title").text(title);
+    }
+
+    /**
      * Feliratkozik a terkep esemenyeire.
      */
     this.subscribeEventListeners = function () {
@@ -78,7 +87,7 @@ var BKKStopMap = function () {
                 bounds._northEast.lat  // maxLat
             ];
 
-        $("#title").text("Megállók betöltése…");
+        that.setTitle("Megállók betöltése…");
 
         $.ajax({
             dataType: "json",
@@ -95,26 +104,54 @@ var BKKStopMap = function () {
      */
     this.drawStops = function (data) {
         var i,
-            content,
-            template = "<a href='/stop/:id' class='stop-link'>:name</a>";
+            marker;
 
         that.map.removeLayer(that.markers);
         that.markers = new L.FeatureGroup();
 
         for (i in data) {
-            content = template.replace(":id", data[i]["id"]).replace(":name", data[i]["name"]);
-            L.marker([data[i]["lat"], data[i]["lon"]], { icon: that.bkkIcon }).bindPopup(content).addTo(that.markers);
+            marker = L.marker([data[i]["lat"], data[i]["lon"]], { icon: that.bkkIcon });
+            marker._kovibusz = {};
+            marker._kovibusz.stopId = data[i]["id"];
+            marker._kovibusz.stopName = data[i]["name"];
+            marker.on("click", that.showPopup);
+            marker.addTo(that.markers);
         }
 
         that.map.addLayer(that.markers);
 
-        $("#title").text("Válassz megállót!");
+        that.setTitle("Válassz megállót!");
+    };
+
+    /**
+     * Megjelenit egy popupot.
+     *
+     * @param {L.Event} e
+     */
+    this.showPopup = function (e) {
+        var stopId = e.target._kovibusz.stopId,
+            stopName = e.target._kovibusz.stopName,
+            popup = new L.Popup();
+
+        popup.setLatLng(e.target._latlng);
+        popup.setContent("<div class='popup-load'></div>");
+
+        that.map.openPopup(popup);
+
+        $.ajax({
+            dataType: "html",
+            url: "/select-route/" + stopId,
+            error: that.handleError,
+            success: function (data) {
+                popup.setContent(data.replace("{ title }", stopName));
+            }
+        });
     };
 
     /**
      * Hibauzenetet jelenit meg.
      */
-    this.handleError = function () {
+    this.handleError = function (msg) {
         alert("Nem sikerült betölteni a megállóhelyeket. :(")
     };
 };

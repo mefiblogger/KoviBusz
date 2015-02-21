@@ -38,6 +38,16 @@ h1 {
     margin: 8px 0 0 0;
 }
 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    margin: 2px 8px;
+}
+
 #mefiblog {
     background: transparent url("/images/mefiblog_logo.png") no-repeat center;
     display: block;
@@ -46,4 +56,29 @@ h1 {
     pointer-events: all;
     width: 75px;
     margin-top: -64px
+}
+
+.popup-load {
+    background: #fff url("/images/popup-load.gif") no-repeat center;
+    display: block;
+    margin: 5px;
+    height: 30px;
+    width: 30px;
+}
+
+.popup-error {
+    margin: 0 !important;
+    text-align: center;
+}
+
+.short-name {
+    display: inline-block;
+    font-weight: bold;
+    padding-right: 5px;
+    text-align: right;
+    width: 30px;
+}
+
+.title-route-select {
+    text-align: center;
 }

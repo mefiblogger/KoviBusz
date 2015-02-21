@@ -6,7 +6,9 @@ var express = require("express"),
     server,
     FutarRequest = require("./FutarRequest"),
     BKKStopIds = require("./BKKStopIds"),
-    swig = require("swig");
+    swig = require("swig"),
+    request = new FutarRequest();
+
 
 // header beallitasa minden requestnek
 app.get('/*',function(req,res,next){
@@ -20,11 +22,27 @@ app.get("/", function (req, res) {
     res.send(tpl());
 });
 
-// menetrend
-app.get("/stop/:stopId", function (req, res) {
-    var request = new FutarRequest();
+// jaratvalaszto
+app.get("/select-route/:stopId", function (req, res) {
+    request.getTripsInStop(req.params.stopId, function (error, data) {
+        var template;
 
-    request.getNextArrival(req.params.stopId, function (error, data) {
+        if (error || null === data) {
+            template = swig.compileFile(__dirname + '/assets/templates/popup-error.html');
+            res.send(template());
+        } else {
+            template = swig.compileFile(__dirname + '/assets/templates/select-route.html');
+            res.send(template({
+                stopId : req.params.stopId,
+                routes : data
+            }));
+        }
+    });
+});
+
+// menetrend
+app.get("/stop/:stopId/trip/:tripId", function (req, res) {
+    request.getNextArrival(req.params.stopId, req.params.tripId, function (error, data) {
         var template;
 
         if (error || null === data) {
