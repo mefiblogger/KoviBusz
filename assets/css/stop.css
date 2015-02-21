@@ -14,7 +14,7 @@ body {
 #route {
     border-radius: 30px;
     height: 200px;
-    width: 340px;
+    width: 390px;
     background: #0076a9 url("/images/bus.png") no-repeat 10px 10px;
 }
 
@@ -34,7 +34,7 @@ body {
     float: left;
     font-size: 85px;
     font-weight: bold;
-    margin: 50px 0 0 135px;
+    margin: 50px 0 0 170px;
     text-align: center;
     width: 200px;
 }
@@ -43,7 +43,7 @@ body {
     border-radius: 30px;
     float: left;
     height: 200px;
-    margin: -200px 370px;
+    margin: -200px 420px;
     width: 340px;
 }
 
