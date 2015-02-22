@@ -87,7 +87,7 @@ var BKKStopMap = function () {
                 bounds._northEast.lat  // maxLat
             ];
 
-        that.setTitle("Megállók betöltése…");
+        that.setTitle("Betöltés…");
 
         $.ajax({
             dataType: "json",
