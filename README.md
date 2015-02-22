@@ -1,6 +1,6 @@
 # KoviBusz 2.0.0
 
-[![Heroku](https://heroku-badge.herokuapp.com/?app=secret-journey-9548)]
+![Heroku](https://heroku-badge.herokuapp.com/?app=secret-journey-9548)
 
 A KoviBusz egy adott busz kovetkezo indulasi idejet mutatja.
 
