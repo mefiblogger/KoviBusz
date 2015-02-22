@@ -87,7 +87,7 @@ li {
 @media all and (max-width: 1024px) {
     h1 {
         font-size: 1.5em;
-        margin: 23px 10px 0 0;
+        margin: 23px 20px 0 0;
     }
 
     #mefiblog {
