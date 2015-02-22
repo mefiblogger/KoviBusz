@@ -1,5 +1,7 @@
 # KoviBusz 2.0.0
 
+[![Heroku](https://heroku-badge.herokuapp.com/?app=secret-journey-9548)]
+
 A KoviBusz egy adott busz kovetkezo indulasi idejet mutatja.
 
 A celja, hogy peldaul irodakban, kozossegi helyeken egy monitoron meg lehet jeleniteni, hasonloan mint a Futar megalloiban lathato kijelzoket.
