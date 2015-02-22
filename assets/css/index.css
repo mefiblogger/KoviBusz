@@ -50,6 +50,7 @@ li {
 
 #mefiblog {
     background: transparent url("/images/mefiblog_logo.png") no-repeat center;
+    background-size: 75px;
     display: block;
     float: right;
     height: 75px;
@@ -81,4 +82,15 @@ li {
 
 .title-route-select {
     text-align: center;
+}
+
+@media all and (max-width: 1024px) {
+    h1 {
+        font-size: 2em;
+        margin-top: 18px;
+    }
+
+    #mefiblog {
+        margin-top: -56px;
+    }
 }
