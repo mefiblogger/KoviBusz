@@ -24,7 +24,7 @@ app.get("/", function (req, res) {
 
 // jaratvalaszto
 app.get("/select-route/:stopId", function (req, res) {
-    request.getTripsInStop(req.params.stopId, function (error, data) {
+    request.getRoutesInStop(req.params.stopId, function (error, data) {
         var template;
 
         if (error || null === data) {
@@ -41,8 +41,8 @@ app.get("/select-route/:stopId", function (req, res) {
 });
 
 // menetrend
-app.get("/stop/:stopId/trip/:tripId", function (req, res) {
-    request.getNextArrival(req.params.stopId, req.params.tripId, function (error, data) {
+app.get("/stop/:stopId/route/:routeId", function (req, res) {
+    request.getNextArrival(req.params.stopId, req.params.routeId, function (error, data) {
         var template;
 
         if (error || null === data) {

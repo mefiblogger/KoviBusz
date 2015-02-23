@@ -1,7 +1,8 @@
-/*global require, module, console, __dirname, parseInt */
+/*global require, module, console, __dirname, parseInt, Date */
 /*jslint unparam: true, sloppy: true, vars: true */
 
-var request = require("request");
+var request = require("request"),
+    strftime = require("strftime");
 
 module.exports = function () {
 
@@ -50,7 +51,7 @@ module.exports = function () {
      * @param {String}      id
      * @param {Function}    callback
      */
-    var getTripsInStop = function (id, callback) {
+    var getRoutesInStop = function (id, callback) {
         getFutarDataForStop(id, function (error, data) {
             var i,
                 errorMsg,
@@ -69,13 +70,13 @@ module.exports = function () {
             trips = data.references.trips;
             routes = data.references.routes;
 
+            // jaratok osszegyujtese
             for (i in trips) {
                 if (routes.hasOwnProperty(trips[i]["routeId"])) {
                     if (!routeIds.hasOwnProperty(trips[i]["routeId"])) {
                         routeIds[trips[i]["routeId"]] = 1;
                         tripsInStop.push({
                             routeId : trips[i]["routeId"],
-                            tripId : trips[i]["id"],
                             shortName : routes[trips[i]["routeId"]]["shortName"],
                             tripHeadsign : trips[i]["tripHeadsign"]
                         });
@@ -83,6 +84,7 @@ module.exports = function () {
                 }
             }
 
+            // jaratnev szerinti rendezes
             tripsInStop = tripsInStop.sort(function(a, b) {
                 var x = parseInt(a["shortName"]),
                     y = parseInt(b["shortName"]);
@@ -98,19 +100,18 @@ module.exports = function () {
      * a sablonnak szukseges adatokat.
      *
      * @param {String}      stopId
-     * @param {String}      tripId
+     * @param {String}      routeId
      * @param {Function}    callback
      *
      * @returns {null}
      */
-    var getNextArrival = function (stopId, tripId, callback) {
+    var getNextArrival = function (stopId, routeId, callback) {
         getFutarDataForStop(stopId, function (error, data) {
             var stoptime,
-                timestamp,
-                date,
-                m,
+                timestamp = null,
                 time,
-                routeId,
+                tripId,
+                tripIds = {},
                 route,
                 i;
 
@@ -119,25 +120,41 @@ module.exports = function () {
                 return;
             }
 
-            for (i in data.entry.stopTimes) {
-                if (tripId == data.entry.stopTimes[i]["tripId"]) {
-                    stoptime = data.entry.stopTimes[i];
-                    timestamp = (stoptime.predictedArrivalTime || stoptime.arrivalTime) * 1000,
-                    date = new Date(timestamp),
-                    m = "0" + date.getMinutes(),
-                    time = date.getHours() + ':' + m.substr(m.length-2),
-                    routeId = data.references.trips[tripId]["routeId"],
-                    route = data.references.routes[routeId];
-
-                    callback(false, {
-                        route: route.shortName,
-                        time: time,
-                        timestamp: timestamp,
-                        type: route.type.toString().toLowerCase()
-                    });
-
-                    return;
+            // kovetkezo jaratok tripId-ja
+            for (i in data.references.trips) {
+                if (routeId == data.references.trips[i]["routeId"]) {
+                    tripIds[data.references.trips[i]["id"]] = 1;
                 }
+            }
+
+            // kovetkezo jaratok indulasa
+            if (Object.keys(tripIds).length) {
+                for (i in data.entry.stopTimes) {
+                    if (tripIds.hasOwnProperty(data.entry.stopTimes[i]["tripId"])) {
+                        stoptime = data.entry.stopTimes[i];
+                        time = (stoptime.predictedArrivalTime || stoptime.arrivalTime) * 1000;
+
+                        if (null === timestamp || time < timestamp) {
+                            timestamp = time;
+                            tripId = data.entry.stopTimes[i]["tripId"];
+                        }
+                    }
+                }
+            }
+
+            // a legkorabbi indulast visszaadjuk
+            if (timestamp) {
+                time = strftime("%H:%M", new Date(timestamp));
+                route = data.references.routes[data.references.trips[tripId]["routeId"]];
+
+                callback(false, {
+                    route: route.shortName,
+                    time: time,
+                    timestamp: timestamp,
+                    type: route.type.toString().toLowerCase()
+                });
+
+                return;
             }
 
             callback(new Error("Nincs menetrend info az adott megallo-viszonylat parosra."), null);
@@ -145,7 +162,7 @@ module.exports = function () {
     };
 
     return {
-        getTripsInStop: getTripsInStop,
+        getRoutesInStop: getRoutesInStop,
         getNextArrival: getNextArrival
     };
 }

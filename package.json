@@ -7,6 +7,7 @@
     "dependencies": {
         "express" : "4.*",
         "swig" : "1.4.2",
-        "request" : "2.*"
+        "request" : "2.*",
+        "strftime" : "0.8.2"
     }
 }
