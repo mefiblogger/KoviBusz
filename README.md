@@ -22,9 +22,23 @@ Nezd meg [Herokun](https://secret-journey-9548.herokuapp.com) vagy a [kovibusz.m
 
 Bongeszoben: http://localhost:3000/
 
-## Jarat modositasa
+## Oldalak mukodese
 
-A FutarRequest.js fajlban az URL-ben lathato, hogyan kerdezi ki az adatokat, ezt kell modositani masik jarathoz.
+*/*
+
+Cimlap, itt jelenik meg a terkep es itt valaszthato ki egy adott megallo.
+
+*/stops/19.03128147125244,19.10874366760254,47.501750118882335,47.517693418192316*
+
+A megadott befoglalo teglalapon belul talalhato megallokat adja vissza JSON formatumban.
+
+*/select-route/009025*
+
+A megalloban az aktualis menetrend szerint elerheto jaratokat adja vissza HTML formatumban.
+
+*/stop/F01096/route/BKK_5100*
+
+A megalloban az adott jarat legkorabbi indulasat mutatja.
 
 ## Ecetera
 
