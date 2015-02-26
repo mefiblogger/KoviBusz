@@ -13,7 +13,9 @@
         <title>KöviBusz - Mefi-féle gyorsmenetrend a BKK {{ route }} jelzésű járatához</title>
 
         <link rel="stylesheet" href="/css/stop.css" />
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link rel="shortcut icon" href="/images/favicon.png" type="image/gif" title="favicon rulezz" />
+
         <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
         <script>
             var setColorAndTextOrReload = function () {
@@ -49,6 +51,20 @@
             };
             $(function () {
                 var intervalId = setInterval(setColorAndTextOrReload, 1000);
+
+                $("html").click(function (e) {
+                    if("menu-link" != $(e.target).attr("class")) {
+                        $("#menu").fadeIn();
+                    }
+                });
+
+                $("#link-reload").click(function () {
+                    window.location.reload();
+                });
+
+                $("#link-close").click(function () {
+                    $("#menu").fadeOut();
+                });
             });
         </script>
     </head>
@@ -61,6 +77,28 @@
                 <p id="timestamp" data-timestamp="{{ timestamp }}" data-time="{{ time }}">{{ time }}</p>
             </div>
         </div>
+
+        <div id="menu" class="hidden">
+            <h2>Ez itt a menü</h2>
+            <ul>
+                <li>
+                    <a href="#" id="link-reload" class="menu-link">
+                        <i class="fa fa-refresh"></i>újratöltés
+                    </a>
+                </li>
+                <li>
+                    <a href="/" class="menu-link">
+                        <i class="fa fa-bullseye"></i>másik megálló
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="link-close" class="menu-link">
+                        <i class="fa fa-times"></i>bezárás
+                    </a>
+                </li>
+            </ul>
+        </div>
+
         {% include "./analytics.html" %}
     </body>
 </html>
