@@ -20,6 +20,13 @@ module.exports = function () {
 
         // Adatok lekerese a Futartol.
         request(requestOptions, function (error, response, data) {
+            // nincs API valasz
+            if (!response) {
+                console.error("[api] - nem sikerult elerni a BKK Futart");
+                callback("Nem sikerult elerni a BKK Futart", null);
+                return;
+            }
+
             // hibas API valasz
             if (200 != response.statusCode) {
                 console.error("[api] - hibas valasz erkezett a BKK Futartol:\n");
