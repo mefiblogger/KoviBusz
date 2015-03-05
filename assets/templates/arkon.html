@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
+    <head>
+        <meta charset="utf-8"/>
+        <meta author="Mefi"/>
+
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="KöviBusz"/>
+        <meta property="og:title" content="Gyorsmenetrend a BKK {{ route }} jelzésű járatához" />
+        <meta property="og:description " content="A következő indulás: {{ time }}" />
+        <meta property="og:image" content="http://kovibusz.mefi.be/images/og.png" />
+
+        <title>KöviBusz - Mefi-féle gyorsmenetrend az Arkon csapatépítő járatához</title>
+
+        <link rel="stylesheet" href="/css/stop.css" />
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link rel="shortcut icon" href="/images/favicon.png" type="image/gif" title="favicon rulezz" />
+
+        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script>
+            var refresh = function () {
+                var now = Math.round(new Date().getTime() / 1000),
+                        timestamp = 1433415600,
+                        diff = (timestamp - now),
+                        text,
+                        time;
+
+                if (60 > diff) {
+                    text = "<i class='fa fa-circle-o-notch fa-spin'></i>";
+                    clearInterval(window.intervalId);
+                } else if ((24 * 3600) < diff) {
+                    text = Math.round(diff / (24 * 3600)) + " nap";
+                } else if (3600 < diff) {
+                    text = Math.round(diff / 3600) + " óra";
+                } else {
+                    text = Math.round(diff / 60) + " perc"
+                }
+
+                $("#timestamp").html(text);
+            };
+            $(function () {
+                window.intervalId = setInterval(refresh, 1000);
+
+                $("html").click(function (e) {
+                    if("menu-link" != $(e.target).attr("class")) {
+                        $("#menu").fadeIn();
+                    }
+                });
+
+                $("#link-reload").click(function () {
+                    window.location.reload();
+                });
+
+                $("#link-close").click(function () {
+                    $("#menu").fadeOut();
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div id="container">
+            <div id="route" class="{{ type }}">
+                <p><i class="fa fa-thumbs-up"></i></p>
+            </div>
+            <div id="time" class="green">
+                <p id="timestamp" data-timestamp="1433415600000"></p>
+            </div>
+        </div>
+
+        <div id="menu" class="hidden">
+            <h2>Ez itt a menü</h2>
+            <ul>
+                <li>
+                    <a href="#" id="link-reload" class="menu-link">
+                        <i class="fa fa-refresh"></i>újratöltés
+                    </a>
+                </li>
+                <li>
+                    <a href="/" class="menu-link">
+                        <i class="fa fa-bullseye"></i>másik megálló
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="link-close" class="menu-link">
+                        <i class="fa fa-times"></i>bezárás
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        {% include "./analytics.html" %}
+    </body>
+</html>

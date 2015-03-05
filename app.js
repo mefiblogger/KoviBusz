@@ -67,6 +67,12 @@ app.get("/stops/:minLon,:minLat,:maxLon,:maxLat", function (req, res) {
     res.send(stops.getStopsInBoundingBox(minLon, minLat, maxLon, maxLat));
 });
 
+// arkon easter egg
+app.get("/arkon", function (req, res) {
+    var template = swig.compileFile(__dirname + '/assets/templates/arkon.html');
+    res.send(template());
+});
+
 // assetek
 app.use("/images", express.static(__dirname + "/assets/images"));
 app.use("/css", express.static(__dirname + "/assets/css"));
