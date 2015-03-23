@@ -2,7 +2,7 @@
     "name" : "kovibusz",
     "description" : "Egy adott BKK jarat kovetkezo indulasi idejet mutatja.",
     "author": "Mefi <mefi@mefi.be>",
-    "version" : "1.0.0",
+    "version" : "2.0.0",
     "repository" : "https://github.com/mefiblogger/KoviBusz",
     "dependencies": {
         "express" : "4.*",
