@@ -73,6 +73,12 @@ app.get("/arkon", function (req, res) {
     res.send(template());
 });
 
+// error page
+app.get("/error", function (req, res) {
+    var template = swig.compileFile(__dirname + '/assets/templates/error.html');
+    res.send(template());
+});
+
 // assetek
 app.use("/images", express.static(__dirname + "/assets/images"));
 app.use("/css", express.static(__dirname + "/assets/css"));
