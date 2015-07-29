@@ -122,7 +122,7 @@ module.exports = function () {
                 route,
                 i;
 
-            if (error) {
+            if (error || data == null) {
                 callback(error, null);
                 return;
             }
