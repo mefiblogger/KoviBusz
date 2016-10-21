@@ -77,20 +77,25 @@ app.get("/arkon/ticker", function (req, res) {
                 var output = "";
 
                 for (var arrivalId in responses) {
-                    var arrival = responses[arrivalId];
+                    var arrival = responses[arrivalId],
+                        timeLeft,
+                        timeLeftMinutes;
+
                     if (!arrival) { continue; }
-
-                    output += arrival.route + ": ";
-
-                    var timeLeft = (arrival.timestamp - new Date().getTime()) / 1000;
+                    timeLeft = (arrival.timestamp - new Date().getTime()) / 1000;
 
                     if (timeLeft < 60) {
-                        output += timeLeft.toFixed(0) + " mp\n";
-                        continue;
+                        timeLeft = 60;
                     }
 
                     timeLeft /= 60;
-                    output += timeLeft.toFixed(0) + " perc\n";
+                    timeLeftMinutes = timeLeft.toFixed(0);
+
+                    if (timeLeftMinutes >= 3) {
+                        output += "<ID01><FR><CH>" + arrival.route + ":<CL>" + timeLeftMinutes + " perc\n";
+                    } else {
+                        output += "<ID01><FR><CH>" + arrival.route + ":<CC>" + timeLeftMinutes + " perc\n";
+                    }
                 }
 
                 res.send(output);
