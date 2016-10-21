@@ -67,6 +67,42 @@ app.get("/stops/:minLon,:minLat,:maxLon,:maxLat", function (req, res) {
     res.send(stops.getStopsInBoundingBox(minLon, minLat, maxLon, maxLat));
 });
 
+//irodai tickernek adatok
+app.get("/arkon/ticker", function (req, res) {
+    var responses = [],
+        responseCallback = function (error, data) {
+            responses.push(data);
+
+            if (responses.length == 4) { //megjott minden info
+                var output = "";
+
+                for (var arrivalId in responses) {
+                    var arrival = responses[arrivalId];
+                    if (!arrival) { continue; }
+
+                    output += arrival.route + ": ";
+
+                    var timeLeft = (arrival.timestamp - new Date().getTime()) / 1000;
+
+                    if (timeLeft < 60) {
+                        output += timeLeft.toFixed(0) + " mp\n";
+                        continue;
+                    }
+
+                    timeLeft /= 60;
+                    output += timeLeft.toFixed(0) + " perc\n";
+                }
+
+                res.send(output);
+            }
+        };
+
+    request.getNextArrival("F00002", "BKK_1780", responseCallback); // 178
+    request.getNextArrival("F00004", "BKK_0085", responseCallback); // 8E
+    request.getNextArrival("F00004", "BKK_1100", responseCallback); // 110
+    request.getNextArrival("F00004", "BKK_1120", responseCallback); // 112
+});
+
 // arkon easter egg
 app.get("/arkon", function (req, res) {
     var template = swig.compileFile(__dirname + '/assets/templates/arkon.html');
@@ -87,4 +123,4 @@ app.use("/js", express.static(__dirname + "/assets/js"));
 // express szerver inditasa
 server = app.listen(process.env.PORT || process.argv[2] || 3000, function () {
     console.log("[app] start - port:%s", server.address().port);
-})
+});
