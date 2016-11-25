@@ -73,7 +73,7 @@ app.get("/arkon/ticker", function (req, res) {
         responseCallback = function (error, data) {
             responses.push(data);
 
-            if (responses.length == 5) { //megjott minden info
+            if (responses.length == 6) { //megjott minden info
                 var output = "";
 
                 for (var arrivalId in responses) {
@@ -104,6 +104,7 @@ app.get("/arkon/ticker", function (req, res) {
 
     request.getNextArrival("F00002", "BKK_1780", responseCallback); // 178
     request.getNextArrival("F00004", "BKK_0085", responseCallback); // 8E
+    request.getNextArrival("F00004", "BKK_1085", responseCallback); // 108E
     request.getNextArrival("F00004", "BKK_1100", responseCallback); // 110
     request.getNextArrival("F00004", "BKK_1120", responseCallback); // 112
     request.getNextArrival("F00004", "BKK_9080", responseCallback); // 908
