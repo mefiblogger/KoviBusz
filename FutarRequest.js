@@ -14,7 +14,7 @@ module.exports = function () {
      */
     var getFutarDataForStop = function (id, callback) {
         var requestOptions = {
-            url: "http://futar.bkk.hu/bkk-utvonaltervezo-api/ws/otp/api/where/arrivals-and-departures-for-stop.json?stopId=BKK_" + id + "&onlyDepartures=1&minutesBefore=0&minutesAfter=20",
+            url: "https://futar.bkk.hu/api/query/v1/ws/otp/api/where/arrivals-and-departures-for-stop.json?stopId=BKK_" + id + "&onlyDepartures=1&minutesBefore=0&minutesAfter=20",
             json: true
         };
 
