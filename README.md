@@ -43,3 +43,4 @@ A megalloban az adott jarat legkorabbi indulasat mutatja.
 ## Ecetera
 
 A licensz MIT, a keszito [Mefi](http://mefi.be/), vidd es hasznald egeszseggel!
+
